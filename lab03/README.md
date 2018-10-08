@@ -31,8 +31,8 @@ zuul.routing_table_string=acme@http://localhost:8081
 通过postman分别调用如下API：
 
 ```
-http://localhost:9000/api/acme/start
-http://localhost:9000/api/acme/readtimeout
+http://localhost:9000/s2g-zuul-mobile/api/acme/start
+http://localhost:9000/s2g-zuul-mobile/api/acme/readtimeout
 ```
 
 #### 5. 通过CAT查看调用链
