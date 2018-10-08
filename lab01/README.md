@@ -7,12 +7,21 @@
 
 ```
 git clone https://github.com/dianping/cat.git
+github太慢,用下面的地址
+https://github.com/orangeyts/cat_lab.git
 ```
 
 #### 2. 构建cat war包
 
 ```
 mvn clean install -DskipTests
+
+错误1 
+unidal.maven.plugins:codegen-maven-plugin:2.5.8 requires Maven version 3.2.1 需要maven版本大于3.2.1
+
+https://mirrors.tuna.tsinghua.edu.cn/apache/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.zip
+解压，并复制原来的仓库配置，否则会重新下载所有的依赖，最好设置aliyun镜像
+set path=E:\hs\software\apache-maven-3.5.4\bin;%path% 设置临时环境变量,原有maven其他系统在用
 ```
 
 将`{CAT_SRC}/cat-home/target/cat-alpha-2.0.0.war`重命名为`cat.war`
