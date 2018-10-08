@@ -8,7 +8,7 @@
 ```
 git clone https://github.com/dianping/cat.git
 github太慢,用下面的地址
-https://github.com/orangeyts/cat_lab.git
+https://gitee.com/mirrors/CAT.git
 ```
 
 #### 2. 构建cat war包
