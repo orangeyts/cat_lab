@@ -28,7 +28,7 @@ public class CatRestInterceptor implements ClientHttpRequestInterceptor {
 
 			// 保存和传递CAT调用链上下文
 			Context ctx = new CatContext();
-			Cat.logRemoteCallClient(ctx);
+			Cat.logRemoteCallClient(ctx);// t10:43:05.143	Call	http://localhost:8082/startOfBackOffice-Service  例子的第三行,标记一个远程 CALL
 			headers.add(CatHttpConstants.CAT_HTTP_HEADER_ROOT_MESSAGE_ID, ctx.getProperty(Cat.Context.ROOT));
 			headers.add(CatHttpConstants.CAT_HTTP_HEADER_PARENT_MESSAGE_ID, ctx.getProperty(Cat.Context.PARENT));
 			headers.add(CatHttpConstants.CAT_HTTP_HEADER_CHILD_MESSAGE_ID, ctx.getProperty(Cat.Context.CHILD));

@@ -58,7 +58,7 @@ public class AcmeFinancialBackOfficeApplication {
 
 	@RequestMapping("/startOfBackOffice-Service")
 	public String service2MethodInController() throws InterruptedException {
-		Thread.sleep(200);
+//		Thread.sleep(200);
 		log.info("Hello from Acme Financial's Backend service. Calling Acme Financial's Account Microservice and then Customer Microservice");
 		String service3 = restTemplate.getForObject("http://" + serviceAddress3 + "/startOfAccount-Microservice", String.class);
 		log.info("Got response from Acme Financial's Account Service [{}]", service3);

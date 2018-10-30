@@ -32,7 +32,7 @@ public class AcemFinancialUIApplication {
 	public String start() throws InterruptedException {
 		log.info("Welcome To Acme Financial. Calling Acme Financial's Back Office Microservice");
 		String response = restTemplate.getForObject("http://" + serviceAddress + "/startOfBackOffice-Service", String.class);
-		Thread.sleep(100);
+//		Thread.sleep(100);
 		log.info("Got response from Acme Financial's Back Office Microservice [{}]", response);
 		return response;
 	}
