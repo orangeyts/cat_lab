@@ -4,17 +4,17 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>io.spring2go</groupId>
-	<artifactId>acme-financial-ui</artifactId>
+	<artifactId>acme-financial-dubbo-facade</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>acme-financial-ui</name>
+	<name>acme-financial-dubbo-facade</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.14.RELEASE</version>
+		<version>1.5.17.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
@@ -25,31 +25,29 @@
 	</properties>
 
 	<dependencies>
-	
-		<!-- 引用接口层 -->
 		<dependency>
-			<groupId>io.spring2go</groupId>
-			<artifactId>acme-financial-dubbo-facade</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
-
-		<!-- cat 监控 -->
 		<dependency>
-			<groupId>net.dubboclub</groupId>
-			<artifactId>cat-monitor</artifactId>
-			<version>0.0.6</version>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.47</version>
 		</dependency>
-		
-		
 		<dependency>
-		    <groupId>org.springframework.boot</groupId>
-		    <artifactId>spring-boot-starter-web</artifactId>
+			<groupId>com.alibaba.boot</groupId>
+			<artifactId>dubbo-spring-boot-starter</artifactId>
+			<version>0.1.0</version>
 		</dependency>
-		
 		<dependency>
-		   <groupId>com.dianping.cat</groupId>
-		   <artifactId>cat-client</artifactId>
-		   <version>2.0.0</version>
+			<groupId>io.netty</groupId>
+			<artifactId>netty-all</artifactId>
+			<version>4.1.24.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.7</version>
 		</dependency>
 
 		<dependency>
@@ -59,18 +57,6 @@
 		</dependency>
 	</dependencies>
 
-	<repositories>
-	      <repository>
-	         <id>central</id>
-	         <name>Maven2 Central Repository</name>
-	         <layout>default</layout>
-	         <url>http://repo1.maven.org/maven2</url>
-	      </repository>
-	      <repository>
-	         <id>unidal.releases</id>
-	         <url>http://unidal.org/nexus/content/repositories/releases/</url>
-	      </repository>
-	</repositories>
 	<build>
 		<plugins>
 			<plugin>

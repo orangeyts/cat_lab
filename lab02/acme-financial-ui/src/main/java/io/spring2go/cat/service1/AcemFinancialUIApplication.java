@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.dianping.cat.Cat;
 import com.dianping.cat.CatConstants;
 import com.dianping.cat.message.Transaction;
 
+import io.spring2go.HelloService;
 import io.spring2go.cathelper.CatRestInterceptor;
 
 import java.lang.invoke.MethodHandles;
@@ -53,6 +55,44 @@ public class AcemFinancialUIApplication {
 		} finally {
 			t.complete();
 		}
+	}
+	
+	
+	@Reference(version = "1.0.0")
+  	private HelloService demoService;
+	/**
+	 * dubbo 调用
+	 * @return
+	 * @throws InterruptedException
+	 */
+	@RequestMapping("/dubboCall")
+	public String dubboCall() throws InterruptedException {
+		Transaction t = Cat.newTransaction(CatConstants.TYPE_REMOTE_CALL, "dubboHello");
+		try {
+			String sayHello = demoService.sayHello("dubboCall");
+			log.info("Got response from dubboService [{}]", sayHello);
+			return sayHello;
+		} catch (Exception e) {
+			Cat.getProducer().logError(e);
+			t.setStatus(e);
+			throw e;
+		} finally {
+			t.complete();
+		}
+	}
+	
+	/**
+	 * 通过 cat-monitor 自动埋点,应用开发人员无感
+	 * 
+	 * https://github.com/dianping/cat/tree/master/integration/dubbo
+	 * @return
+	 * @throws InterruptedException
+	 */
+	@RequestMapping("/dubboMonitor")
+	public String dubboMonitor() throws InterruptedException {
+		String sayHello = demoService.sayHello("自动埋点");
+		log.info("Got response from dubboService [{}]", sayHello);
+		return sayHello;
 	}
 
 	@Bean

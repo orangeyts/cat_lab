@@ -13,6 +13,8 @@
 * [acme-financial-back-office-microservice](acme-financial-back-office-microservice):8082
 * [acme-financial-account-microservice](acme-financial-account-microservice):8083
 * [acme-financial-customer-microservice](acme-financial-customer-microservice):8084
+* [acme-financial-dubbo-service](acme-financial-dubbo-service): rpc服务
+
 
 依次启动上述项目
 
@@ -23,6 +25,11 @@
 ```
 http://localhost:8081/start
 http://localhost:8081/readtimeout
+
+- dubbo调用
+
+http://localhost:8081/dubboCall 手动埋点
+http://localhost:8081/dubboMonitor 自动埋点
 ```
 
 #### 4. 通过CAT查看调用链
