@@ -30,6 +30,7 @@ http://localhost:8081/readtimeout
 
 http://localhost:8081/dubboCall 手动埋点
 http://localhost:8081/dubboMonitor 自动埋点
+http://localhost:8081/dubboMybatis dubboMybatis埋点
 ```
 
 #### 4. 通过CAT查看调用链

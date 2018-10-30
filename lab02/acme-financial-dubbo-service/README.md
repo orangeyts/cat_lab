@@ -5,6 +5,7 @@
 ./mvnw spring-boot:run
 ```
 
+mvn mybatis-generator:generate 生成mybatis类
 
 ## Links
 

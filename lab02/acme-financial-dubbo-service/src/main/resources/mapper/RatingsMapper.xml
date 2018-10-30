@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.spring2go.dao.RatingsMapper">
+  <resultMap id="BaseResultMap" type="io.spring2go.model.Ratings">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user" jdbcType="BIGINT" property="user" />
+    <result column="item" jdbcType="BIGINT" property="item" />
+    <result column="rating" jdbcType="DOUBLE" property="rating" />
+    <result column="timestamp" jdbcType="BIGINT" property="timestamp" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="io.spring2go.model.Ratings">
+    <result column="revision" jdbcType="LONGVARCHAR" property="revision" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, user, item, rating, timestamp
+  </sql>
+  <sql id="Blob_Column_List">
+    revision
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="io.spring2go.model.RatingsExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ratings
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="io.spring2go.model.RatingsExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from ratings
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ratings
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from ratings
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="io.spring2go.model.RatingsExample">
+    delete from ratings
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="io.spring2go.model.Ratings">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into ratings (user, item, rating, 
+      timestamp, revision)
+    values (#{user,jdbcType=BIGINT}, #{item,jdbcType=BIGINT}, #{rating,jdbcType=DOUBLE}, 
+      #{timestamp,jdbcType=BIGINT}, #{revision,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="io.spring2go.model.Ratings">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into ratings
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="user != null">
+        user,
+      </if>
+      <if test="item != null">
+        item,
+      </if>
+      <if test="rating != null">
+        rating,
+      </if>
+      <if test="timestamp != null">
+        timestamp,
+      </if>
+      <if test="revision != null">
+        revision,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="user != null">
+        #{user,jdbcType=BIGINT},
+      </if>
+      <if test="item != null">
+        #{item,jdbcType=BIGINT},
+      </if>
+      <if test="rating != null">
+        #{rating,jdbcType=DOUBLE},
+      </if>
+      <if test="timestamp != null">
+        #{timestamp,jdbcType=BIGINT},
+      </if>
+      <if test="revision != null">
+        #{revision,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="io.spring2go.model.RatingsExample" resultType="java.lang.Long">
+    select count(*) from ratings
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update ratings
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.user != null">
+        user = #{record.user,jdbcType=BIGINT},
+      </if>
+      <if test="record.item != null">
+        item = #{record.item,jdbcType=BIGINT},
+      </if>
+      <if test="record.rating != null">
+        rating = #{record.rating,jdbcType=DOUBLE},
+      </if>
+      <if test="record.timestamp != null">
+        timestamp = #{record.timestamp,jdbcType=BIGINT},
+      </if>
+      <if test="record.revision != null">
+        revision = #{record.revision,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update ratings
+    set id = #{record.id,jdbcType=BIGINT},
+      user = #{record.user,jdbcType=BIGINT},
+      item = #{record.item,jdbcType=BIGINT},
+      rating = #{record.rating,jdbcType=DOUBLE},
+      timestamp = #{record.timestamp,jdbcType=BIGINT},
+      revision = #{record.revision,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update ratings
+    set id = #{record.id,jdbcType=BIGINT},
+      user = #{record.user,jdbcType=BIGINT},
+      item = #{record.item,jdbcType=BIGINT},
+      rating = #{record.rating,jdbcType=DOUBLE},
+      timestamp = #{record.timestamp,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="io.spring2go.model.Ratings">
+    update ratings
+    <set>
+      <if test="user != null">
+        user = #{user,jdbcType=BIGINT},
+      </if>
+      <if test="item != null">
+        item = #{item,jdbcType=BIGINT},
+      </if>
+      <if test="rating != null">
+        rating = #{rating,jdbcType=DOUBLE},
+      </if>
+      <if test="timestamp != null">
+        timestamp = #{timestamp,jdbcType=BIGINT},
+      </if>
+      <if test="revision != null">
+        revision = #{revision,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="io.spring2go.model.Ratings">
+    update ratings
+    set user = #{user,jdbcType=BIGINT},
+      item = #{item,jdbcType=BIGINT},
+      rating = #{rating,jdbcType=DOUBLE},
+      timestamp = #{timestamp,jdbcType=BIGINT},
+      revision = #{revision,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="io.spring2go.model.Ratings">
+    update ratings
+    set user = #{user,jdbcType=BIGINT},
+      item = #{item,jdbcType=BIGINT},
+      rating = #{rating,jdbcType=DOUBLE},
+      timestamp = #{timestamp,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

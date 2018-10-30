@@ -21,5 +21,10 @@ public class AcmeFinancialDubboConsumerApplicationTests {
 		String sayHello = demoService.sayHello("unitTest");
     	System.err.println(sayHello);
 	}
+	@Test
+	public void mybatisCat() {
+		String sayHello = demoService.getRatings(5L);
+		System.err.println(sayHello);
+	}
 
 }

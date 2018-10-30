@@ -94,6 +94,12 @@ public class AcemFinancialUIApplication {
 		log.info("Got response from dubboService [{}]", sayHello);
 		return sayHello;
 	}
+	@RequestMapping("/dubboMybatis")
+	public String dubboMybatis() throws InterruptedException {
+		String sayHello = demoService.getRatings(5L);
+		log.info("Got response from dubboService [{}]", sayHello);
+		return sayHello;
+	}
 
 	@Bean
 	RestTemplate restTemplate() {
