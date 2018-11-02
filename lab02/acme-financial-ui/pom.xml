@@ -33,7 +33,7 @@
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
-		<!-- cat 监控 -->
+		<!-- cat 监控 dubbo-->
 		<dependency>
 			<groupId>net.dubboclub</groupId>
 			<artifactId>cat-monitor</artifactId>
