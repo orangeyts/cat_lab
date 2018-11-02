@@ -18,6 +18,8 @@ public class HelloServiceImpl implements HelloService {
 	
 	@Override
     public String sayHello(String name) {
+		Ratings selectByPrimaryKey = ratingsMapper.selectByPrimaryKey(5L);
+		System.out.println(JSON.toJSONString(selectByPrimaryKey));
         return "Hello dubbo from http://start.dubbo.io/, " + name + ", " + new Date();
     }
 
