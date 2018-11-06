@@ -27,6 +27,8 @@
 		<module>acme-financial-dubbo-service</module>
 		<module>acme-financial-ui</module>
 		<module>dubbo-cat-monitor</module>
+		<!-- 网关 -->
+		<module>s2g-zuul</module>
 	</modules>
 	<dependencyManagement>
 	
